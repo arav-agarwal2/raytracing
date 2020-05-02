@@ -1,3 +1,12 @@
+# Got from https://stackoverflow.com/questions/5574702/how-to-print-to-stderr-in-python
+from __future__ import print_function
+import sys
+
+def eprint(*args, **kwargs):
+    """Print to stderror"""
+    print(*args, file=sys.stderr, **kwargs)
+
+
 class Image:
     def __init__(self, height, width):
         self.data =  [[ [0,0,0] for element in range(width) ] for elem in range(height)]
@@ -10,8 +19,10 @@ class Image:
 
     def chapOneFill(self):
         for rowid, row in enumerate(self.data):
+            eprint("Rendering the", rowid+1, "scanline of", self.height)
             for colid, data in enumerate(row):
                 self.data[rowid][colid] = [(colid*256)//self.width, ((self.width - rowid)*256)//self.height, 51]
+        eprint("Finished Rendering")
 
 if __name__ == "__main__":
     testImage = Image(100, 200)
