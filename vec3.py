@@ -88,7 +88,7 @@ class Vec3:
     def unit(self):
         return self / abs(self)
 
-    def printcolor(self):
+    def color(self):
         return " ".join(str(int(item*255.999)) for item in self.data) + "\n"
 
     def x(self):
